@@ -1,8 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Acesso frontend
+
 ## Getting Started
 
-First, run the development server:
+Para rodar o projeto:
 
 ```bash
 npm run dev
@@ -10,25 +12,36 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## GitFlow
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Para geração de novos recursos ou manutenças dos ja presentes neste projeto, é importante seguir o gitflow estabelecido.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+O git está organizado em dois branch principais `master` e `homol`. A `master` é considerada o ambiente de produção,
+ou seja, tendo todos os recursos devidamente testados e homologados. Já a branch `homol` é o ambiente de homologação,
+nela novos recursos são fundidos, testados e validados antes de fundir para `master`.
 
-## Learn More
+Durante o processo de desenvolvimento de novos recursos ou manutenção, novas branch são criadas saindo do ambiente de
+homologação. Para criação a nova branch, é importante passar o contexto da branch, podendo ser eles:
 
-To learn more about Next.js, take a look at the following resources:
+- **feature**: para novos recursos;
+- **hotfix**: correção de bug crítico encontrado, implementação em produção com urgência;
+- **bugfix**: correção de bug não crítico encontrado.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Além do contexto, deve passar um título para a branch, tendo as seguindo informações;
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Descrição **breve** da branch.
 
-## Deploy on Vercel
+Deste modo, um exemplo para uma branch de um novo recurso fica assim:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+git checkout -b feature/nova-mascara-no-input
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Apos as implementar na branch nova as melhorias ou manutenção, deve-se criar
+um [Pull Requests (PR)](https://github.com/Plataforma-TED10523/plataforma-components/pulls)
+para branch `homol`. Depois do PR se avaliado e aceito a branch criada deve ser deletada,
+pois é importante manter somente as branch principais.
+
+> A deleção da branch para `feature`, `hotfix` ou `bugfix` é dever do revisor de código
